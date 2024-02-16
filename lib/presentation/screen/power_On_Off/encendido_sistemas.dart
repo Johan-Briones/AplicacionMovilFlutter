@@ -10,13 +10,13 @@ class _EncendidoSistemasState extends State<EncendidoSistemas> {
   final Map<String,bool>estadoElemento={
     '1':true,
     '2':true,
-    '3':true,
+    '3':true, 
     '4':true,
   };
   void _controlarLED(String accion) async {
     final uri = Uri.parse('http://10.42.0.1:8000/$accion');
     final respuesta = await http.get(uri);
-    print('Respuesta del servidor: ${respuesta.body}');
+    //print('Respuesta del servidor: ${respuesta.body}');
   }
 
   void _estadoEncendioApagado(String element) {

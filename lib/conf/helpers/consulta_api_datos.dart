@@ -33,8 +33,8 @@ class ConsultaApi {
   Future<Datos> getAnwe() async {
     try {
       final response =
-          //await _dio.get('http://192.168.0.159:5000/api/P/1');
-          await _dio.get('http://10.42.0.41:5000/api/P/1');
+          await _dio.get('http://192.168.0.159:5000/api/P/1');
+          //await _dio.get('http://10.42.0.41:5000/api/P/1');
           print(response);
       final datosModel = DatosModel.fromJsonMap(response.data[0]);
       return datosModel.toDatosEntity();

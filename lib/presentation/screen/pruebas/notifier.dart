@@ -19,6 +19,7 @@ class HomePage extends StatelessWidget {
     DatosProviders dataModel = Provider.of<DatosProviders>(context);
     dataModel.paint();
     return Scaffold(
+      
       appBar: AppBar(
         title: Text('Mi Aplicación'),
       ),

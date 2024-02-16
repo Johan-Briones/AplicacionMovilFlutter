@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:grafica_interfaz/presentation/screen/graficas/pantalla_grafica_screen.dart';
 import 'package:grafica_interfaz/presentation/screen/power_On_Off/encendido_sistemas.dart';
 import 'package:grafica_interfaz/presentation/screen/pruebas/prueba.dart';
+import 'package:grafica_interfaz/presentation/screen/pruebas/videoWebCam.dart';
 import 'package:grafica_interfaz/theme/app_theme.dart';
 
 void main() => runApp(const MyApp());
@@ -18,7 +19,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    final screens=[const PantallaGraficaScreen(), const EncendidoSistemas(),const Prueba(),const Prueba()];
+    final screens=[const PantallaGraficaScreen(), const EncendidoSistemas(),const VideoWebCam(),const Prueba()];
     return MaterialApp(
       //Rutas de navegacion
       debugShowCheckedModeBanner: false,
@@ -64,8 +65,9 @@ class _MyAppState extends State<MyApp> {
               items: const [
                 BottomNavigationBarItem(icon: Icon(Icons.bar_chart, size: 30,),label: "Grafica",),
                 BottomNavigationBarItem(icon: Icon(Icons.power, size: 30),label: "Encender",),
-                
-                BottomNavigationBarItem(icon: Icon(Icons.agriculture_rounded, size: 30),label: "Cumming soon",)]
+                BottomNavigationBarItem(icon: Icon(Icons.videocam_outlined, size: 30),label: "Camara",),
+                //BottomNavigationBarItem(icon: Icon(Icons.agriculture_rounded, size: 30),label: "Cumming soon",)
+                ]
               ),
         ),
         
