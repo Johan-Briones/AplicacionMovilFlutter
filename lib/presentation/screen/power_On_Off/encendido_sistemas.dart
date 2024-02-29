@@ -13,8 +13,13 @@ class _EncendidoSistemasState extends State<EncendidoSistemas> {
     '3':true, 
     '4':true,
   };
-  void _controlarLED(String accion) async {
+  void _controlarLED(String accion) async { 
     final uri = Uri.parse('http://10.42.0.1:8000/$accion');
+    final respuesta = await http.get(uri);
+    //print('Respuesta del servidor: ${respuesta.body}');
+  }
+  void _controlarComputadora() async { 
+    final uri = Uri.parse('http://192.168.0.159:8000/inicio');
     final respuesta = await http.get(uri);
     //print('Respuesta del servidor: ${respuesta.body}');
   }
@@ -68,7 +73,7 @@ class _EncendidoSistemasState extends State<EncendidoSistemas> {
                   onPressed: () => _controlGeneral(),
                   child: Text((estadoElemento["1"])==true? 'Encendido General' : 'Apagar General', style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),),
                   style: ElevatedButton.styleFrom(
-                  fixedSize: const Size(275, 150),
+                    fixedSize: const Size(310, 150),
                   elevation: 5,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18))),
                 ),
@@ -77,7 +82,7 @@ class _EncendidoSistemasState extends State<EncendidoSistemas> {
                   onPressed: () => _estadoEncendioApagado("2"),
                   style: ElevatedButton.styleFrom(
                   //backgroundColor: Color.fromARGB(200, 255, 255, 255),
-                   fixedSize: const Size(275, 150),
+                     fixedSize: const Size(310, 150),
                    elevation: 5,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18))),
                   child: Text(estadoElemento['2']==true? 'Encender Compresor' : 'Apagar Compresor', style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
@@ -91,7 +96,7 @@ class _EncendidoSistemasState extends State<EncendidoSistemas> {
                  ElevatedButton(
               onPressed: () => _estadoEncendioApagado("3"),
               style: ElevatedButton.styleFrom(
-                fixedSize: const Size(275, 150),
+                  fixedSize: const Size(310, 150),
                 elevation: 5,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18))),
               
@@ -103,7 +108,7 @@ class _EncendidoSistemasState extends State<EncendidoSistemas> {
               onPressed: () => _estadoEncendioApagado("4"),
               child: Text(estadoElemento['4']==true ? 'Encender Computadora' : 'Apagar Computadora', style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),),
               style: ElevatedButton.styleFrom(
-                fixedSize: const Size(275, 150),
+                  fixedSize: const Size(310, 150),
                 elevation: 5,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
               

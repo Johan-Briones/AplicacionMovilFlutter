@@ -26,6 +26,7 @@ class _MyAppState extends State<MyApp> {
       theme:AppTheme(2).theme(),
       title: 'Grafcias',
       home: Scaffold(
+        backgroundColor: Color.fromARGB(255, 255, 255, 255),
         /*appBar: AppBar(
           
           backgroundColor: const Color.fromARGB(245, 11, 189, 11),
