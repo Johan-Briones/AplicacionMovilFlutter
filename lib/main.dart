@@ -27,25 +27,6 @@ class _MyAppState extends State<MyApp> {
       title: 'Grafcias',
       home: Scaffold(
         backgroundColor: Color.fromARGB(255, 255, 255, 255),
-        /*appBar: AppBar(
-          
-          backgroundColor: const Color.fromARGB(245, 11, 189, 11),
-          
-          actions: <Widget>[
-             
-              
-              IconButton(onPressed: () {}, icon: const Icon(Icons.notifications)),
-              ],   
-         /* leading: Row(
-            
-            children:[
-              
-              TextButton(onPressed: () {}, child: const Text('Inicio',style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold,color: Colors.black)),),
-              TextButton(onPressed: () {}, child: const Text('Enecendido',style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold,color: Colors.black)),),
-              TextButton(onPressed: () {}, child: const Text('Graficas',style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold,color: Colors.black)),),
-          ]),*/
-
-        ),*/
         body:  IndexedStack(index:selectedIndex, children:screens,),
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: const Color.fromARGB(245, 11, 189, 11),

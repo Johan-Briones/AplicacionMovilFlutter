@@ -15,15 +15,15 @@ class _VideoWebCamState extends State<VideoWebCam> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SizedBox(height: 700, width: 700,
+          SizedBox(height:500, width: 500,
           child: Mjpeg(
             isLive: isRunning,
-            stream: "http://192.168.0.159:5000/stream",),),
-         const SizedBox(width: 20),
-          SizedBox(height: 700, width: 700,
+            stream: "http://127.0.0.1:8000/stream",),),
+          SizedBox(width: 10,),
+           SizedBox(height:500, width: 500,
           child: Mjpeg(
             isLive: isRunning,
-            stream: "http://192.168.0.159:5000/stream2",),),
+            stream: "http://127.0.0.1:8000/stream2",),),
           
         ],
       ),
