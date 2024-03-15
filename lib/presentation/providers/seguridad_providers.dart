@@ -8,13 +8,16 @@ class SeguridadProviders extends ChangeNotifier{
   late DatosSeguridad estado= DatosSeguridad(camara1:false, camara2: false); 
   
   Future <void> alert() async{
-    if(banConsulta==true)
-    {
+    try{
+      if(banConsulta==true)
+      {
        final data=await GetEstado.getStatusSegurity();
        estado=(DatosSeguridad(camara1: data.camara1, camara2: data.camara2,estadoS: data.estadoS));
        notifyListeners();
+      }
+    }catch(error){
+      print("error en la octecion de la informacion");
     }
-   
   }
   void DeternerConsultas(){
       banConsulta=false;

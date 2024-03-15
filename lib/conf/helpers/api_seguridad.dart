@@ -1,9 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:grafica_interfaz/Infrastructure/models/datos_seguridad_models.dart';
+import 'package:grafica_interfaz/conf/helpers/direccionesServidor.dart';
 import 'package:grafica_interfaz/domain/datos_seguridad.dart';
 class ApiSeguridad{
   final _dio=Dio();
-  final String url="http://127.0.0.1:8000/seguridad";
+  final String url="${Dick["python"]}/seguridad";
   Future<DatosSeguridad> getStatusSegurity() async{
     try{
        final response=await _dio.get(url);

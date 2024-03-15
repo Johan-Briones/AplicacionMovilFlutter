@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:grafica_interfaz/presentation/providers/datos_providers.dart';
 import 'package:grafica_interfaz/presentation/screen/graficas/grafica_bar_screen.dart';
@@ -5,6 +7,7 @@ import 'package:grafica_interfaz/presentation/screen/graficas/grafica_pay_screen
 import 'package:provider/provider.dart';
 
 class PantallaGraficaScreen extends StatelessWidget {
+  
   const PantallaGraficaScreen({super.key});
 
   @override
@@ -16,18 +19,18 @@ class PantallaGraficaScreen extends StatelessWidget {
       child: OrientationBuilder(
         builder: (context,orientation){
           DatosProviders dataModel = Provider.of<DatosProviders>(context);
-          dataModel.paint();
+          //Timer.periodic(Duration(seconds: 7), (timer) { 
+              dataModel.paint();
+          //});
+          
           return orientation==Orientation.portrait
             ? SingleChildScrollView(
               child: Column (
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  SizedBox(height: 30,),
+                  const SizedBox(height: 30,),
                   GraficaPayScreen(datos:dataModel.elementos()),
                   GraficaBarScreen(datos:dataModel.elementos()),
-                  
-                  //Prueba(),
-                  //Prueba()
                 ],
               ),
             )
@@ -35,14 +38,9 @@ class PantallaGraficaScreen extends StatelessWidget {
               child: Row (
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                
                  GraficaPayScreen(datos:dataModel.elementos()),
-                 SizedBox(width: 50,),
-                
+                 const SizedBox(width: 50,),
                  GraficaBarScreen(datos:dataModel.elementos()),
-                 
-                  //
-                  //Prueba()
                 ],
               ),
             );

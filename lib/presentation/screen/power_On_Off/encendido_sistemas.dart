@@ -1,56 +1,60 @@
 import 'package:flutter/material.dart';
+import 'package:grafica_interfaz/conf/helpers/EncendidoTrigger/utilizacion_api_trigger.dart';
 import 'package:http/http.dart' as http;
 class EncendidoSistemas extends StatefulWidget {
+  
   const EncendidoSistemas({super.key});
   @override
   State<EncendidoSistemas> createState() => _EncendidoSistemasState();
 }
 
 class _EncendidoSistemasState extends State<EncendidoSistemas> {
+  UtilizacionApi Control=UtilizacionApi();
   final Map<String,bool>estadoElemento={
-    
-    '1':true,
-    '2':true,
-    
-    '3':true, 
+    '3':true,
     '4':true,
+    '5':true, 
+    '6':true,
+    '7':true
   };
-  void _controlarLED(String accion) async { 
-    final uri = Uri.parse('http://127.0.0.1:8000/encendido/$accion');
-    await http.get(uri);
-    //print('Respuesta del servidor: ${respuesta.body}');
-  }
-
-
   void _estadoEncendioApagado(String element) {
     setState(() {
       estadoElemento[element]=!estadoElemento[element]!;
       if (estadoElemento[element]==false) {
-        _controlarLED("on$element");
+        if(element=='6') {
+          Control.InicioComputadora();
+        }
+        Control.Control("on/$element");
       } else {
-        _controlarLED("off$element");
+        if(element=='6') {
+          Control.FinComputadora();
+        }
+        Control.Control("off/$element");
       }
-     if( estadoElemento['1']==true && estadoElemento['2']==false ||estadoElemento['3']==false ||estadoElemento['4']==false){
-      estadoElemento['1']=false;
+      /*
+     if( estadoElemento['3']==true && estadoElemento['4']==false ||estadoElemento['5']==false ||estadoElemento['6']==false||estadoElemento['7']==false){
+      estadoElemento['3']=false;
       _controlarLED("on1");
      }
-     if( estadoElemento['1']==false && estadoElemento['2']==true &&estadoElemento['3']==true &&estadoElemento['4']==true){
-      estadoElemento['1']=true;
+     if( estadoElemento['3']==false && estadoElemento['4']==true &&estadoElemento['5']==true &&estadoElemento['6']==true && estadoElemento['7']==true){
+      estadoElemento['3']=true;
       _controlarLED("off1");
      }
+     */
     });
   }
   void _controlGeneral(){
     setState(() {
-      if (estadoElemento['1']==true){
-         _controlarLED("LedAll-On");
-        for(int i=1;i<=4;i++){
-          
+      if (estadoElemento['3']==true){
+         Control.Control("LedAll-On");
+         Control.InicioComputadora();
+        for(int i=3;i<=7;i++){
            estadoElemento['$i']=false;
         }
       }else{
-        _controlarLED("LedAll-Off");
-         for(int i=1;i<=4;i++){
+        Control.Control("LedAll-Off");
+        Control.FinComputadora();
+         for(int i=3;i<=7;i++){
            estadoElemento['$i']=true;
         }
       }
@@ -64,27 +68,42 @@ class _EncendidoSistemasState extends State<EncendidoSistemas> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+             mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                
                 ElevatedButton(
                   onPressed: () => _controlGeneral(),
-                  child: Text((estadoElemento["1"])==true? 'Encendido General' : 'Apagar General', style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),),
+                  child: Text((estadoElemento["3"])==true? 'Encendido General' : 'Apagar General', style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),),
                   style: ElevatedButton.styleFrom(
-                    fixedSize: const Size(310, 150),
+                    fixedSize: const Size(640, 150),
                   elevation: 5,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18))),
                 ),
               const SizedBox(width: 20),
-              ElevatedButton(
-                  onPressed: () => _estadoEncendioApagado("2"),
+              ]
+            ),
+            const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: () => _estadoEncendioApagado("4"),
                   style: ElevatedButton.styleFrom(
                   //backgroundColor: Color.fromARGB(200, 255, 255, 255),
                      fixedSize: const Size(310, 150),
                    elevation: 5,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18))),
-                  child: Text(estadoElemento['2']==true? 'Encender Compresor' : 'Apagar Compresor', style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+                  child: Text(estadoElemento['4']==true? 'Encender Compresor' : 'Apagar Compresor', style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
                 ),
+                const SizedBox(width: 20),
+                ElevatedButton(
+                    onPressed: () => _estadoEncendioApagado("7"),
+                    style: ElevatedButton.styleFrom(
+                    //backgroundColor: Color.fromARGB(200, 255, 255, 255),
+                      fixedSize: const Size(310, 150),
+                    elevation: 5,
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18))),
+                    child: Text(estadoElemento['7']==true? 'Encender Conveyor' : 'Apagar Conveyor', style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+                  ),
               ],
             ),
             const SizedBox(height: 20),
@@ -92,19 +111,19 @@ class _EncendidoSistemasState extends State<EncendidoSistemas> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                  ElevatedButton(
-              onPressed: () => _estadoEncendioApagado("3"),
+              onPressed: () => _estadoEncendioApagado("5"),
               style: ElevatedButton.styleFrom(
                   fixedSize: const Size(310, 150),
                 elevation: 5,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18))),
               
-              child: Text((estadoElemento['3']==true)? 'Encender Generador' : 'Apagar Genrador', style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),),
+              child: Text((estadoElemento['5']==true)? 'Encender Generador' : 'Apagar Generador', style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),),
               
             ),
             const SizedBox(width: 20),
             ElevatedButton(
-              onPressed: () => _estadoEncendioApagado("4"),
-              child: Text(estadoElemento['4']==true ? 'Encender Computadora' : 'Apagar Computadora', style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),),
+              onPressed: () => _estadoEncendioApagado("6"),
+              child: Text(estadoElemento['6']==true ? 'Encender Computadora' : 'Apagar Computadora', style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),),
               style: ElevatedButton.styleFrom(
                   fixedSize: const Size(310, 150),
                 elevation: 5,

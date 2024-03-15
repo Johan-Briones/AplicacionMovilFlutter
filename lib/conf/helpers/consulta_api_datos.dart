@@ -16,6 +16,7 @@ import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 import 'package:grafica_interfaz/Infrastructure/models/Datos_models.dart';
 import 'package:grafica_interfaz/domain/grafica_datos_domain.dart';
+import 'package:grafica_interfaz/conf/helpers/direccionesServidor.dart';
 
 class ConsultaApi {
   final _dio = Dio();
@@ -33,7 +34,7 @@ class ConsultaApi {
   Future<Datos> getAnwe() async {
     try {
       final response =
-          await _dio.get('https://localhost:5000/api/AplicasionMovil/1');
+          await _dio.get('${Dick[".net"]}/api/AplicasionMovil/1');
           //await _dio.get('http://10.42.0.41:5000/api/P/1');
           print(response);
       final datosModel = DatosModel.fromJsonMap(response.data[0]);
@@ -41,7 +42,7 @@ class ConsultaApi {
     } catch (e) {
       // Manejar errores, imprimir o retornar un objeto Datos con un estado de error, según tus necesidades.
       print('Error en la solicitud: $e');
-      throw e; // O manejar el error de alguna otra manera según tus necesidades.
+      throw e; // O manejar el err|or de alguna otra manera según tus necesidades.
     }
   }
 }

@@ -16,18 +16,23 @@ class DatosProviders extends ChangeNotifier {
      procentaje3: 1);
      
   Future<void> paint()async{
-    final data=await getDatosGrafica.getAnwe();
-    datos=(Datos( 
+    try{
+      final data=await getDatosGrafica.getAnwe();
+      datos=(Datos( 
                  numeros:data.numeros, 
                  cantidadObservada: data.cantidadObservada, 
                  cantidadEnRango: data.cantidadEnRango, 
                  porDebajo: data.porDebajo, 
-                  porEncima: data.porEncima,
+                 porEncima: data.porEncima,
                  procentaje1: data.procentaje1,
                  procentaje2: data.procentaje2,
                  procentaje3: data.procentaje3
                  ));
     notifyListeners();
+    }catch (error){
+      print("no existe conexion con el servidor");
+    }
+    
   }
   Datos elementos(){
     return datos;
