@@ -33,10 +33,9 @@ class ConsultaApi {
 
   Future<Datos> getAnwe() async {
     try {
-      final response =
-          await _dio.get('${Dick[".net"]}/api/AplicasionMovil/1');
-          //await _dio.get('http://10.42.0.41:5000/api/P/1');
-          print(response);
+      final response = await _dio.get('${Dick[".net"]}/api/AplicasionMovil/7');
+      //await _dio.get('http://10.42.0.41:5000/api/P/1');
+      //print(response);
       final datosModel = DatosModel.fromJsonMap(response.data[0]);
       return datosModel.toDatosEntity();
     } catch (e) {
@@ -46,4 +45,3 @@ class ConsultaApi {
     }
   }
 }
-
